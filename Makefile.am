@@ -3,7 +3,7 @@ NULL =
 
 bin_SCRIPTS = earthquake
 
-SUBDIRS = libgd src data
+SUBDIRS = libgd src data po
 
 EXTRA_DIST = \
 	earthquake.in
