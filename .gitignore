@@ -31,3 +31,4 @@ src/Makefile.in
 stamp-h1
 data/earthquake.gresource
 earthquake
+po/earthquake.pot
