@@ -4,6 +4,7 @@ from IPython import embed
 from gi.repository import Gst
 from gi.repository import Gtk
 import subprocess
+from gi.repository.Gtk import Stack, StackTransitionType
 
 def commandToLines(command):
     output = subprocess.check_output(command).decode("utf-8")
@@ -65,14 +66,17 @@ class MainWindow(Gtk.Window):
 
         self.button = Gtk.Button(label="Play")
         self.button.connect("clicked", self.on_button_clicked)
-        self.add(self.button)
+        #self.add(self.button)
+        astack = Gtk.Stack()
+        astack.add(self.button)
+        self.add(astack)
         self.playing = False
         self.init_gst()
         
     def init_gst(self):
         self.pipeline = Gst.Pipeline.new("my_little_pipeline")
         videotestsrc = Gst.ElementFactory.make("videotestsrc", "my_little_videotestsrc")
-        glimagesink = Gst.ElementFactory.make("glimagesink", "my_little_glimagesink")
+        glimagesink = Gst.ElementFactory.make("autovideosink", "my_little_glimagesink")
 
         self.pipeline.add(videotestsrc)
         self.pipeline.add(glimagesink)
