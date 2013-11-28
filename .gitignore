@@ -29,3 +29,5 @@ py-compile
 src/Makefile
 src/Makefile.in
 stamp-h1
+data/earthquake.gresource
+earthquake
