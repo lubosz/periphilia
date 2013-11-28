@@ -44,6 +44,7 @@ AC_CONFIG_FILES([
   data/AboutDialog.ui
   data/Makefile
   src/Makefile
+  po/Makefile.in
   libgd/Makefile
 ])
 AC_OUTPUT

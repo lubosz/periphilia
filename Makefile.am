@@ -14,6 +14,8 @@ CLEANFILES = \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
+	$(srcdir)/AUTHORS \
+	$(srcdir)/INSTALL \
 	$(srcdir)/aclocal.m4 \
 	$(srcdir)/autoscan.log \
 	$(srcdir)/compile \
