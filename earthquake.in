@@ -11,7 +11,7 @@ from gi.repository import Gio, Gtk
 import src
 
 localedir='@localedir@'
-srcdir = os.path.abspath(os.path.join(os.path.dirname(gnomemusic.__file__), '..'))
+srcdir = os.path.abspath(os.path.join(os.path.dirname(src.__file__), '..'))
 if os.path.exists(os.path.join(srcdir, 'README.md')):
     print('Running from source tree, using local files')
     pkgdatadir = os.path.join(srcdir, 'data')
