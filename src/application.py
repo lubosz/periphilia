@@ -137,6 +137,7 @@ class Application(Gtk.Application):
         dialog.destroy()
 
     def do_startup(self):
+        print("Starting up")
         Gtk.Application.do_startup(self)
 
         Notify.init("Earthquake")
@@ -147,7 +148,12 @@ class Application(Gtk.Application):
         self._window.destroy()
 
     def do_activate(self):
+        #read_plugins()
+        Gst.init(None)
         if not self._window:
             self._window = MainWindow()
 
         self._window.present()
+        self._window.show_all()
+        Gtk.main()
+        
