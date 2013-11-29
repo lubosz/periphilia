@@ -50,6 +50,9 @@ if __name__ == "__main__":
     gettext.bindtextdomain('earthquake', localedir)
     gettext.textdomain('earthquake')
 
+    resource = Gio.resource_load(os.path.join(pkgdatadir, 'earthquake.gresource'))
+    Gio.Resource._register(resource)
+
     app = Application()
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     exit_status = app.run(sys.argv)

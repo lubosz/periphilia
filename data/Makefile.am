@@ -6,13 +6,13 @@ resourcedir = $(pkgdatadir)
 resource_DATA = earthquake.gresource
 
 appsdir = $(datadir)/applications
-apps_DATA = gnome-music.desktop
+apps_DATA = earthquake.desktop
 
 @INTLTOOL_DESKTOP_RULE@
 
 appdatadir = $(datadir)/appdata
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-appdata_in_files = gnome-music.appdata.xml.in
+appdata_in_files = earthquake.appdata.xml.in
 
 @INTLTOOL_XML_RULE@
 
