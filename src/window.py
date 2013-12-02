@@ -43,20 +43,36 @@ class Window(Gtk.ApplicationWindow):
         
         #self.views.append(Views.ElementView(self.toolbar, _("All"), all_plugins))
 
-        cats = ["frei0r", "libav", "opengl", "effectv", "gnonlin", "rtp", "libvisual", "audiofx", "videofilter", "gaudieffects"]
         
+        
+        """"
         for cat in cats:
             self.views.append(Views.ElementView(self.toolbar, _(cat), plugins.get_by_cat(cat)))
-
-        suffixes = [("Bins", "bin"), ("Decoders", "dec"), ("Demuxers", "demix"), ("Parsers", "parse"), ("Sources", "src"),
-            ("Encoders", "enc"), ("Muxers", "mux"), ("Sinks", "sink")]
-
-        for suffix in suffixes:
-            suffix_plugins = plugins.get_by_suffix(suffix[1])
-            #self.views.append(Views.ElementView(self.toolbar, suffix[0], suffix_plugins))
-
+        """
         
+        
+
+
+        input_plugins = {}
+        suffixes = [("Bins", "bin"), ("Decoders", "dec"), ("Demuxers", "demux"), ("Parsers", "parse"), ("Sources", "src")]
+        for suffix in suffixes:
+            input_plugins[suffix[0]] = plugins.get_by_suffix(suffix[1])
+        self.views.append(Views.ElementStackView(self.toolbar, "Input", input_plugins))
+        
+        output_plugins = {}
+        suffixes2 = [("Encoders", "enc"), ("Muxers", "mux"), ("Sinks", "sink")]
+        for suffix in suffixes2:
+            output_plugins[suffix[0]] = plugins.get_by_suffix(suffix[1])
+        self.views.append(Views.ElementStackView(self.toolbar, "Output", output_plugins))
+        
+        lib_plugins = {}
+        submodules = ["frei0r", "libav", "opengl", "effectv", "gnonlin", "rtp", "libvisual", "audiofx", "videofilter", "gaudieffects", "coreelements", "rtpmanager", "geometrictransform"]
+        for submodule in submodules:
+            lib_plugins[submodule] = plugins.get_by_cat(submodule)
+        self.views.append(Views.ElementStackView(self.toolbar, "Libs", lib_plugins))
+
         self.views.append(Views.ElementView(self.toolbar, _("Misc"), plugins.get_rest()))
+
         for i in self.views:
             self._stack.add_titled(i, i.title, i.title)
 
