@@ -32,3 +32,9 @@ stamp-h1
 data/earthquake.gresource
 earthquake
 po/earthquake.pot
+data/earthquake.appdata.xml
+data/earthquake.desktop
+data/gschemas.compiled
+data/org.gstreamer.Earthquake.gschema.valid
+po/.intltool-merge-cache
+src/__pycache__/
