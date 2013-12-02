@@ -42,20 +42,21 @@ class Window(Gtk.ApplicationWindow):
         plugins = Plugins()
         
         #self.views.append(Views.ElementView(self.toolbar, _("All"), all_plugins))
-        self.views.append(Views.ElementView(self.toolbar, _("Bins"), plugins.get("bins")))
-        self.views.append(Views.ElementView(self.toolbar, _("Decoders"), plugins.get("decoders")))
-        self.views.append(Views.ElementView(self.toolbar, _("Encoders"), plugins.get("encoders")))
-        self.views.append(Views.ElementView(self.toolbar, _("Muxers"), plugins.get("muxers")))
-        self.views.append(Views.ElementView(self.toolbar, _("Demuxers"), plugins.get("demuxers")))
-        self.views.append(Views.ElementView(self.toolbar, _("Sources"), plugins.get("sources")))
-        self.views.append(Views.ElementView(self.toolbar, _("Sinks"), plugins.get("sinks")))
-        self.views.append(Views.ElementView(self.toolbar, _("Parsers"), plugins.get("parsers")))
+
+        cats = ["frei0r", "libav", "opengl", "effectv", "gnonlin", "rtp", "libvisual", "audiofx", "videofilter", "gaudieffects"]
         
-        self.views.append(Views.ElementView(self.toolbar, _("frei0r"), plugins.get("frei0r")))
-        self.views.append(Views.ElementView(self.toolbar, _("libav"), plugins.get("libav")))
-        self.views.append(Views.ElementView(self.toolbar, _("OpenGL"), plugins.get("opengl")))
-        self.views.append(Views.ElementView(self.toolbar, _("effectv"), plugins.get("effectv")))
-        self.views.append(Views.ElementView(self.toolbar, _("Misc"), plugins.get("misc")))
+        for cat in cats:
+            self.views.append(Views.ElementView(self.toolbar, _(cat), plugins.get_by_cat(cat)))
+
+        suffixes = [("Bins", "bin"), ("Decoders", "dec"), ("Demuxers", "demix"), ("Parsers", "parse"), ("Sources", "src"),
+            ("Encoders", "enc"), ("Muxers", "mux"), ("Sinks", "sink")]
+
+        for suffix in suffixes:
+            suffix_plugins = plugins.get_by_suffix(suffix[1])
+            #self.views.append(Views.ElementView(self.toolbar, suffix[0], suffix_plugins))
+
+        
+        self.views.append(Views.ElementView(self.toolbar, _("Misc"), plugins.get_rest()))
         for i in self.views:
             self._stack.add_titled(i, i.title, i.title)
 
