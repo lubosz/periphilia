@@ -26,22 +26,20 @@ class Toolbar(GObject.GObject):
         self._ui.add_from_resource('/org/gstreamer/Earthquake/headerbar.ui')
         self.header_bar = self._ui.get_object('header-bar')
         self.searchbar = Searchbar(self._stack_switcher)
-        self._select_button = self._ui.get_object('select-button')
-        self._cancel_button = self._ui.get_object('done-button')
-        self._back_button = self._ui.get_object('back-button')
+        #self._select_button = self._ui.get_object('select-button')
+        #self._cancel_button = self._ui.get_object('done-button')
+        #self._back_button = self._ui.get_object('back-button')
         self._close_separator = self._ui.get_object('close-button-separator')
         self._close_button = self._ui.get_object('close-button')
-        self._selection_menu = self._ui.get_object('selection-menu')
-        self._selection_menu_button = self._ui.get_object('selection-menu-button')
-        self._selection_menu_button.set_relief(Gtk.ReliefStyle.NONE)
+        #self._selection_menu = self._ui.get_object('selection-menu')
+        #self._selection_menu_button = self._ui.get_object('selection-menu-button')
+        #self._selection_menu_button.set_relief(Gtk.ReliefStyle.NONE)
         self._search_button = self._ui.get_object('search-button')
         if Gtk.Widget.get_default_direction() is Gtk.TextDirection.RTL:
             _back_button_image = self._ui.get_object('back-button-image')
             _back_button_image.set_property('icon-name', 'go-previous-rtl-symbolic')
-        self._back_button.connect('clicked', self.on_back_button_clicked)
+        #self._back_button.connect('clicked', self.on_back_button_clicked)
         self._close_button.connect('clicked', self._close_button_clicked)
-        if Gtk.get_minor_version() <= 8:
-            self._close_button.connect('hierarchy-changed', self._on_hierarchy_changed)
 
     def _close_button_clicked(self, btn):
         if Gtk.get_minor_version() > 8:
@@ -102,11 +100,7 @@ class Toolbar(GObject.GObject):
         else:
             self.reset_header_title()
 
-        self._back_button.set_visible(not self._selectionMode and self._state == ToolbarState.SINGLE)
 
-        if Gtk.get_minor_version() > 8:
-            self._close_separator.set_visible(not self._selectionMode)
-            self._close_button.set_visible(not self._selectionMode)
-        else:
-            self._close_separator.set_visible(not self._selectionMode and self._maximized)
-            self._close_button.set_visible(not self._selectionMode and self._maximized)
+        self._close_separator.set_visible(not self._selectionMode)
+        self._close_button.set_visible(not self._selectionMode)
+

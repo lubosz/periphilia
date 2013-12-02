@@ -46,11 +46,11 @@ class Searchbar(Gd.Revealer):
         if self.view.header_bar._state == 0:
             # album was selected on album view, view needs to be redefined
             self.view = self.view._albumWidget
-        if not hasattr(self.view.filter, "visible_function_set"):
-            self.view.filter.set_visible_func(self.set_view_filter)
-            self.view.filter.visible_function_set = True
+        #if not hasattr(self.view.filter, "visible_function_set"):
+        #    self.view.filter.set_visible_func(self.set_view_filter)
+        #    self.view.filter.visible_function_set = True
 
     def search_entry_changed(self, widget):
         self.search_term = self._search_entry.get_text()
-        if self.view:
-            self.view.filter.refilter()
+        #if self.view:
+        #    self.view.filter.refilter()

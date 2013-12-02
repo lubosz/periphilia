@@ -6,7 +6,8 @@ import subprocess
 from gi.repository.Gtk import Stack, StackTransitionType
 from gi.repository import Gtk, Gio, GLib, Gdk, Notify
 import src.view as Views
-from src.toolbar import Toolbar
+from src.toolbar import Toolbar, ToolbarState
+from gettext import gettext as _
 
 def commandToLines(command):
     output = subprocess.check_output(command).decode("utf-8")
@@ -79,10 +80,21 @@ class Window(Gtk.ApplicationWindow):
         self._box.pack_start(self._stack, True, True, 0)
         self.add(self._box)
         count = 1
-        self.views.append(Views.ElementView())
-
+        self.views.append(Views.ElementView(self.toolbar, _("All")))
+        self.views.append(Views.ElementView(self.toolbar, _("Decoders")))
+        self.views.append(Views.ElementView(self.toolbar, _("Encoders")))
+        self.views.append(Views.ElementView(self.toolbar, _("Muxers")))
+        self.views.append(Views.ElementView(self.toolbar, _("Demuxers")))
         for i in self.views:
             self._stack.add_titled(i, i.title, i.title)
+
+        self.toolbar.set_stack(self._stack)
+        self.toolbar.searchbar.show()
+        
+        self.toolbar._search_button.connect('toggled', self._on_search_toggled)
+
+        self.toolbar.set_state(ToolbarState.ALBUMS)
+        self.toolbar.header_bar.show()
 
         self._box.show()
         self.show()
@@ -108,3 +120,16 @@ class Window(Gtk.ApplicationWindow):
             self.pipeline.set_state(Gst.State.PLAYING)
             self.playing = True
             self.button.set_label("Pause")
+    def _toggle_view(self, btn, i):
+        self._stack.set_visible_child(self.views[i])
+
+    def _on_search_toggled(self, button, data=None):
+        self._show_searchbar(button.get_active())
+
+    def _show_searchbar(self, show):
+        self.toolbar.searchbar.set_reveal_child(show)
+        self.toolbar._search_button.set_active(show)
+        if show:
+            self.toolbar.searchbar._search_entry.grab_focus()
+        else:
+            self.toolbar.searchbar._search_entry.set_text('')

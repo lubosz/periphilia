@@ -56,9 +56,11 @@ class ViewContainer(Stack):
 
 
 class ElementView(ViewContainer):
-    def __init__(self):
-        ViewContainer.__init__(self, _("Decoders"))
+    def __init__(self, header_bar, title):
+        ViewContainer.__init__(self, title)
         builder = Gtk.Builder()
+        self.header_bar = header_bar
+        self.filter = ''
         builder.add_from_resource('/org/gstreamer/Earthquake/ElementWidget.ui')
         self.add(builder.get_object('ElementWidget'))
 
