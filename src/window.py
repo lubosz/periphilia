@@ -2,55 +2,12 @@
 
 from IPython import embed
 from gi.repository import Gst, Gtk, GObject, GdkPixbuf, Gd
-import subprocess
 from gi.repository.Gtk import Stack, StackTransitionType
 from gi.repository import Gtk, Gio, GLib, Gdk, Notify
 import src.view as Views
 from src.toolbar import Toolbar, ToolbarState
 from gettext import gettext as _
-
-def commandToLines(command):
-    output = subprocess.check_output(command).decode("utf-8")
-    lines = output.split("\n")
-    return lines
-
-def read_plugins():
-    Gst.init(None)
-
-    rank = Gst.Rank.NONE
-
-    muxers = Gst.ElementFactory.list_get_elements(
-        Gst.ELEMENT_FACTORY_TYPE_MUXER, rank)
-    encoders = Gst.ElementFactory.list_get_elements(
-        Gst.ELEMENT_FACTORY_TYPE_VIDEO_ENCODER, rank)
-    sources = Gst.ElementFactory.list_get_elements(
-        Gst.ELEMENT_FACTORY_TYPE_SRC, rank)
-
-    for muxer in sources:
-        plugin = muxer.get_plugin()
-        #print(plugin.get_source(), plugin.get_name(), "\t", plugin.get_description(), plugin.get_path_string())
-
-    pluginLines = commandToLines("gst-inspect-1.0")
-
-    plugins = {}
-
-    for plugin in pluginLines:
-        pluginSplit = plugin.split(":")
-        if len(pluginSplit) == 3:
-            cat = pluginSplit[0].strip()
-            name = pluginSplit[1].strip()
-            desc = pluginSplit[2].strip()
-
-            try:
-                plugins[cat]
-            except KeyError:
-                plugins[cat] = {}
-            plugins[cat][name] = desc
-
-    for cat in plugins:
-        print (cat, "(%d)" % len(plugins[cat]))
-        for name in plugins[cat]:
-            print("\t", name)
+from src.plugin import Plugins
 
 class Window(Gtk.ApplicationWindow):
 
@@ -68,6 +25,7 @@ class Window(Gtk.ApplicationWindow):
     def setup_view(self):
         self._box = Gtk.VBox()
         self.toolbar = Toolbar()
+        self.toolbar2 = Toolbar()
         self.views = []
         self._stack = Stack(
             transition_type=StackTransitionType.CROSSFADE,
@@ -80,11 +38,24 @@ class Window(Gtk.ApplicationWindow):
         self._box.pack_start(self._stack, True, True, 0)
         self.add(self._box)
         count = 1
-        self.views.append(Views.ElementView(self.toolbar, _("All")))
-        self.views.append(Views.ElementView(self.toolbar, _("Decoders")))
-        self.views.append(Views.ElementView(self.toolbar, _("Encoders")))
-        self.views.append(Views.ElementView(self.toolbar, _("Muxers")))
-        self.views.append(Views.ElementView(self.toolbar, _("Demuxers")))
+        
+        plugins = Plugins()
+        
+        #self.views.append(Views.ElementView(self.toolbar, _("All"), all_plugins))
+        self.views.append(Views.ElementView(self.toolbar, _("Bins"), plugins.get("bins")))
+        self.views.append(Views.ElementView(self.toolbar, _("Decoders"), plugins.get("decoders")))
+        self.views.append(Views.ElementView(self.toolbar, _("Encoders"), plugins.get("encoders")))
+        self.views.append(Views.ElementView(self.toolbar, _("Muxers"), plugins.get("muxers")))
+        self.views.append(Views.ElementView(self.toolbar, _("Demuxers"), plugins.get("demuxers")))
+        self.views.append(Views.ElementView(self.toolbar, _("Sources"), plugins.get("sources")))
+        self.views.append(Views.ElementView(self.toolbar, _("Sinks"), plugins.get("sinks")))
+        self.views.append(Views.ElementView(self.toolbar, _("Parsers"), plugins.get("parsers")))
+        
+        self.views.append(Views.ElementView(self.toolbar, _("frei0r"), plugins.get("frei0r")))
+        self.views.append(Views.ElementView(self.toolbar, _("libav"), plugins.get("libav")))
+        self.views.append(Views.ElementView(self.toolbar, _("OpenGL"), plugins.get("opengl")))
+        self.views.append(Views.ElementView(self.toolbar, _("effectv"), plugins.get("effectv")))
+        self.views.append(Views.ElementView(self.toolbar, _("Misc"), plugins.get("misc")))
         for i in self.views:
             self._stack.add_titled(i, i.title, i.title)
 

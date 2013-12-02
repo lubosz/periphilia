@@ -39,16 +39,14 @@ class ViewContainer(Stack):
 
         self.show_all()
 
-    def add_item(self, source, param, item):
-        artist = "A GStreamer Element"
-        title = "Cool Element"
+    def add_item(self, name, cat):
         pb = GdkPixbuf.Pixbuf.new_from_file("data/seal.png")
 
         _iter = self.model.append(None)
         self.model.set(_iter,
                         [0, 1, 2, 3, 4, 5, 7, 8, 9, 10],
-                        ["theitem", '', title,
-                         artist, pb, None,
+                        ["theitem", '', name,
+                         cat, pb, None,
                          -1, "seal", False, False])
 
     def on_item_activated(self, widget, id, path):
@@ -56,7 +54,7 @@ class ViewContainer(Stack):
 
 
 class ElementView(ViewContainer):
-    def __init__(self, header_bar, title):
+    def __init__(self, header_bar, title, plugins):
         ViewContainer.__init__(self, title)
         builder = Gtk.Builder()
         self.header_bar = header_bar
@@ -64,5 +62,5 @@ class ElementView(ViewContainer):
         builder.add_from_resource('/org/gstreamer/Earthquake/ElementWidget.ui')
         self.add(builder.get_object('ElementWidget'))
 
-        for i in range(0, 20):
-            self.add_item(None, None, None)
+        for plugin in plugins:
+            self.add_item(plugin.name, plugin.category)
