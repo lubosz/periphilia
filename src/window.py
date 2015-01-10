@@ -14,7 +14,7 @@ class Window(Gtk.ApplicationWindow):
     def __init__(self, app):
         Gtk.ApplicationWindow.__init__(self,
                                        application=app,
-                                       title="Earthquake")
+                                       title="Gamepads")
         self.setup_view()
         """
         self.button = Gtk.Button(label="Play")

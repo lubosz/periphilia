@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
- <id type="desktop">earthquake.desktop</id>
+ <id type="desktop">gnome-gamepads.desktop</id>
  <licence>CC0</licence>
- <_name>Earthquake</_name>
+ <_name>Gamepads</_name>
  <_summary>Composite videos</_summary>
  <description>
   <_p>
-   Earthquake is a video compositor.
+   Gamepads is a video compositor.
   </_p>
  </description>
- <url type="homepage">https://github.com/lubosz/earthquake</url>
+ <url type="homepage">https://github.com/lubosz/gnome-gamepads</url>
  <updatecontact>lubosz@gmail.com</updatecontact>
 </application>

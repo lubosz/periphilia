@@ -1,9 +1,9 @@
 AC_PREREQ(2.63)
-AC_INIT([earthquake],
+AC_INIT([gnome-gamepads],
         [0.0.1],
-        [https://github.com/lubosz/earthquake/issues],
-        [earthquake],
-        [https://github.com/lubosz/earthquake])
+        [https://github.com/lubosz/gnome-gamepads/issues],
+        [gnome-gamepads],
+        [https://github.com/lubosz/gnome-gamepads])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS(config.h)
@@ -13,7 +13,7 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 AM_PATH_PYTHON([3])
 
-GETTEXT_PACKAGE=earthquake
+GETTEXT_PACKAGE=gnome-gamepads
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                    [The prefix for our gettext translation domains.])

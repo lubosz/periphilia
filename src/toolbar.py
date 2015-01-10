@@ -23,7 +23,7 @@ class Toolbar(GObject.GObject):
         GObject.GObject.__init__(self)
         self._stack_switcher = StackSwitcher(margin_top=2, margin_bottom=2)
         self._ui = Gtk.Builder()
-        self._ui.add_from_resource('/org/gstreamer/Earthquake/headerbar.ui')
+        self._ui.add_from_resource('/org/gstreamer/Gamepads/headerbar.ui')
         self.header_bar = self._ui.get_object('header-bar')
         self.searchbar = Searchbar(self._stack_switcher)
         #self._select_button = self._ui.get_object('select-button')

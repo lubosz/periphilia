@@ -1,12 +1,12 @@
 ACLOCAL_AMFLAGS = -I m4 -I libgd
 NULL =
 
-bin_SCRIPTS = earthquake
+bin_SCRIPTS = gnome-gamepads
 
 SUBDIRS = libgd src data po
 
 EXTRA_DIST = \
-	earthquake.in
+	gnome-gamepads.in
 	$(NULL)
 
 CLEANFILES = \
@@ -44,7 +44,7 @@ gen-AUTHORS:
 	   mv -f $(distdir)/AUTHORS-tmp $(distdir)/AUTHORS ;           \
 	fi
 
-earthquake: earthquake.in Makefile
+gnome-gamepads: gnome-gamepads.in Makefile
 	$(AM_V_GEN)sed						\
 		-e s!\@srcdir\@!$(abs_top_srcdir)!	\
 		-e s!\@prefix\@!$(prefix)!		\
@@ -61,7 +61,7 @@ earthquake: earthquake.in Makefile
 		< $< > $@
 	chmod a+x $@
 
-all-local: earthquake
+all-local: gnome-gamepads
 
 -include $(top_srcdir)/git.mk
 

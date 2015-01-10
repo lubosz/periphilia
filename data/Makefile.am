@@ -1,22 +1,22 @@
-resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --sourcedir=$(builddir) --generate-dependencies $(srcdir)/earthquake.gresource.xml) 
-earthquake.gresource: earthquake.gresource.xml $(resource_files)
+resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --sourcedir=$(builddir) --generate-dependencies $(srcdir)/gnome-gamepads.gresource.xml) 
+gnome-gamepads.gresource: gnome-gamepads.gresource.xml $(resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) $<
 
 resourcedir = $(pkgdatadir)
-resource_DATA = earthquake.gresource
+resource_DATA = gnome-gamepads.gresource
 
 appsdir = $(datadir)/applications
-apps_DATA = earthquake.desktop
+apps_DATA = gnome-gamepads.desktop
 
 @INTLTOOL_DESKTOP_RULE@
 
 appdatadir = $(datadir)/appdata
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-appdata_in_files = earthquake.appdata.xml.in
+appdata_in_files = gnome-gamepads.appdata.xml.in
 
 @INTLTOOL_XML_RULE@
 
-gsettings_SCHEMAS = org.gstreamer.Earthquake.gschema.xml
+gsettings_SCHEMAS = org.gstreamer.Gamepads.gschema.xml
 
 # For uninstalled use
 gschemas.compiled: $(gsettings_SCHEMAS) Makefile
@@ -26,15 +26,15 @@ gschemas.compiled: $(gsettings_SCHEMAS) Makefile
 
 EXTRA_DIST = \
 	$(resource_files) \
-	earthquake.appdata.xml.in \
-	earthquake.desktop.in \
-	earthquake.gresource.xml \
-  org.gstreamer.Earthquake.gschema.xml \
+	gnome-gamepads.appdata.xml.in \
+	gnome-gamepads.desktop.in \
+	gnome-gamepads.gresource.xml \
+  org.gstreamer.Gamepads.gschema.xml \
 	$(NULL)
 
 CLEANFILES = \
-	earthquake.gresource \
-	earthquake.appdata.xml \
+	gnome-gamepads.gresource \
+	gnome-gamepads.appdata.xml \
 	$(apps_DATA) \
 	*.valid \
 	gschemas.compiled \

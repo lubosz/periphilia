@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-    <schema path="/org/gstreamer/Earthquake/" id="org.gstreamer.Earthquake" gettext-domain="earthquake">
+    <schema path="/org/gstreamer/Gamepads/" id="org.gstreamer.Gamepads" gettext-domain="gnome-gamepads">
         <key type="ai" name="window-size">
             <default>[768, 600]</default>
             <summary>Window size</summary>

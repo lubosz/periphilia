@@ -11,12 +11,12 @@ from .window import Window
 class Application(Gtk.Application):
     def __init__(self):
         Gtk.Application.__init__(self,
-                                 application_id='org.gstreamer.Earthquake',
+                                 application_id='org.gstreamer.Gamepads',
                                  flags=Gio.ApplicationFlags.FLAGS_NONE)
-        GLib.set_application_name("Earthquake")
-        GLib.set_prgname('earthquake')
+        GLib.set_application_name("Gamepads")
+        GLib.set_prgname('gnome-gamepads')
         cssProviderFile = Gio.File.new_for_uri(
-          'resource:///org/gstreamer/Earthquake/application.css')
+          'resource:///org/gstreamer/Gamepads/application.css')
         cssProvider = Gtk.CssProvider()
         cssProvider.load_from_file(cssProviderFile)
         screen = Gdk.Screen.get_default()
@@ -30,7 +30,7 @@ class Application(Gtk.Application):
         builder = Gtk.Builder()
 
         builder.add_from_resource(
-          '/org/gstreamer/Earthquake/app-menu.ui')
+          '/org/gstreamer/Gamepads/app-menu.ui')
 
         menu = builder.get_object('app-menu')
         self.set_app_menu(menu)
@@ -45,7 +45,7 @@ class Application(Gtk.Application):
         
     def about(self, action, param):
         builder = Gtk.Builder()
-        builder.add_from_resource('/org/gstreamer/Earthquake/AboutDialog.ui')
+        builder.add_from_resource('/org/gstreamer/Gamepads/AboutDialog.ui')
         about = builder.get_object('about_dialog')
         about.set_transient_for(self._window)
         about.connect("response", self.about_response)
@@ -58,7 +58,7 @@ class Application(Gtk.Application):
         print("Starting up")
         Gtk.Application.do_startup(self)
 
-        Notify.init("Earthquake")
+        Notify.init("Gamepads")
 
         self.build_app_menu()
 

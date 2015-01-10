@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gstreamer/Earthquake">
+  <gresource prefix="/org/gstreamer/Gamepads">
     <file preprocess="xml-stripblanks">AboutDialog.ui</file>
     <file preprocess="xml-stripblanks">app-menu.ui</file>
     <file preprocess="xml-stripblanks">ElementWidget.ui</file>

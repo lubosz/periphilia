@@ -5,7 +5,7 @@
     <section>
       <item>
         <attribute name="action">app.about</attribute>
-        <attribute name="label">About Earthquake</attribute>
+        <attribute name="label">About Gamepads</attribute>
       </item>
       <item>
         <attribute name="action">app.quit</attribute>

@@ -1,9 +1,9 @@
 [Desktop Entry]
-_Name=Earthquake
+_Name=Gamepads
 _GenericName=Video Compositor
 _Comment=Composite your videos
-Icon=earthquake
-Exec=earthquake
+Icon=gnome-gamepads
+Exec=gnome-gamepads
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;AudioVideo;Video;
