@@ -16,7 +16,7 @@ appdata_in_files = gnome-gamepads.appdata.xml.in
 
 @INTLTOOL_XML_RULE@
 
-gsettings_SCHEMAS = org.gstreamer.Gamepads.gschema.xml
+gsettings_SCHEMAS = org.gnome.Gamepads.gschema.xml
 
 # For uninstalled use
 gschemas.compiled: $(gsettings_SCHEMAS) Makefile
@@ -29,7 +29,7 @@ EXTRA_DIST = \
 	gnome-gamepads.appdata.xml.in \
 	gnome-gamepads.desktop.in \
 	gnome-gamepads.gresource.xml \
-  org.gstreamer.Gamepads.gschema.xml \
+  org.gnome.Gamepads.gschema.xml \
 	$(NULL)
 
 CLEANFILES = \

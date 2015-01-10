@@ -46,7 +46,7 @@ class ElementView(ViewContainer):
         ViewContainer.__init__(self, title, header_bar)
         self.view.set_view_type(Gd.MainViewType.ICON)
         builder = Gtk.Builder()
-        builder.add_from_resource('/org/gstreamer/Gamepads/ElementWidget.ui')
+        builder.add_from_resource('/org.gnome.Gamepads/ElementWidget.ui')
         self.add(builder.get_object('ElementWidget'))
         self.plugins = plugins
         self.populate()
