@@ -36,6 +36,5 @@ data/gnome-gamepads.appdata.xml
 data/gnome-gamepads.desktop
 data/gschemas.compiled
 data/org.gnome.Gamepads.gschema.valid
-data/org.gnome.Gamepads.gschema.xml
 po/.intltool-merge-cache
 src/__pycache__/
