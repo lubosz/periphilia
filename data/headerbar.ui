@@ -5,38 +5,6 @@
     <property name="visible">True</property>
     <property name="vexpand">False</property>
     <child>
-      <object class="GtkToggleButton" id="search-button">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="valign">center</property>
-        <property name="sensitive">True</property>
-        <style>
-          <class name="image-button"/>
-        </style>
-        <child>
-          <object class="GtkImage" id="search-button-image">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon-name">edit-find-symbolic</property>
-            <property name="icon-size">1</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack_type">end</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkSeparator" id="close-button-separator">
-        <property name="visible">True</property>
-        <property name="orientation">vertical</property>
-        <property name="valign">fill</property>
-      </object>
-      <packing>
-        <property name="pack_type">end</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkButton" id="close-button">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
@@ -60,5 +28,38 @@
         <property name="pack_type">end</property>
       </packing>
     </child>
+    <child>
+      <object class="GtkSeparator" id="close-button-separator">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="valign">fill</property>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+      </packing>
+    </child>
+        <child>
+      <object class="GtkButton" id="menu-button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="valign">center</property>
+        <property name="sensitive">True</property>
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child>
+          <object class="GtkImage" id="menu-button-image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+      </packing>
+    </child>
+
   </object>
 </interface>

@@ -68,16 +68,4 @@ class Application(Gtk.Application):
     def do_activate(self):
         if not self._window:
             self._window = Window(self)
-        
-        """
-        builder = Gtk.Builder()
-        builder.add_from_file("data/appwindow.ui")
-        self._window = builder.get_object('applicationwindow1')
-        self._window.set_application(self)
-        """
         self._window.present()
-        #embed()
-        #self._window.connect("delete-event", Gtk.main_quit)
-        #self._window.show_all()
-        #Gtk.main()
-        
