@@ -30,8 +30,6 @@ py-compile
 src/Makefile
 src/Makefile.in
 stamp-h1
-data/gnome-gamepads.gresource
-data/gnome-gamepads.gresource.xml
 gnome-gamepads
 po/gnome-gamepads.pot
 data/gnome-gamepads.appdata.xml
